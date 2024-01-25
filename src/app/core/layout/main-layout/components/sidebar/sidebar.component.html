@@ -2,8 +2,8 @@
 <div
   tabindex="0"
   class="sidebar hidden sm:flex w-16 h-full bg-white border-r border-gray-200 absolute z-50 transition-all duration-300 ease-in-out"
-  [class.w-72]="isHovered || isExpanded"
-  (click)="toggleExpand()"
+  [class.w-72]="isExpanded"
+  (click)="togglePinState()"
   (keypress)="onKeyPress($event)"
   (mouseenter)="onMouseEnter()"
   (mouseleave)="onMouseLeave()"
@@ -23,73 +23,23 @@
       </svg>
     </div>
     <nav class="flex flex-1 flex-col">
-      <ul role="list" class="flex flex-1 flex-col space-y-1">
-        <li>
+      <ul role="list" class="sidebar-nav flex flex-1 flex-col space-y-1">
+        <li *ngFor="let navItem of navItems" class="nav-item">
           <a
-            href="#nothing"
             class="group flex gap-x-2 px-3 py-3 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-3xl"
-            title="dashboard"
+            [class.active]="isNavItemActive(navItem)"
+            [routerLink]="navItem.path"
+            [title]="navItem.title"
             (click)="$event.stopPropagation()">
             <ng-icon
-              class="text-gray-400 group-hover:text-blue-600"
-              name="heroChartBarSolid"
-              size="1.5em"></ng-icon>
+              size="1.5em"
+              class="icon text-gray-400 group-hover:text-blue-600"
+              [name]="navItem.icon"></ng-icon>
             <span
-              *ngIf="isHovered || isExpanded"
-              class="label transition-all duration-300 ease-in-out"
-              >Dashboard</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="/facilities"
-            class="group flex gap-x-2 px-3 py-3 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-3xl"
-            title="dashboard"
-            (click)="$event.stopPropagation()">
-            <ng-icon
-              class="text-gray-400 group-hover:text-blue-600"
-              name="heroMapSolid"
-              size="1.5em"></ng-icon>
-            <span
-              *ngIf="isHovered || isExpanded"
-              class="label transition-all duration-300 ease-in-out"
-              >Facilities</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="/inventory"
-            class="group flex gap-x-2 px-3 py-3 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-3xl"
-            title="dashboard"
-            (click)="$event.stopPropagation()">
-            <ng-icon
-              class="text-gray-400 group-hover:text-blue-600"
-              name="heroCubeSolid"
-              size="1.5em"></ng-icon>
-            <span
-              *ngIf="isHovered || isExpanded"
-              class="label transition-all duration-300 ease-in-out"
-              >Inventory</span
-            >
-          </a>
-        </li>
-        <li>
-          <a
-            href="/products"
-            class="group flex gap-x-2 px-3 py-3 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-3xl"
-            title="dashboard"
-            (click)="$event.stopPropagation()">
-            <ng-icon
-              class="text-gray-400 group-hover:text-blue-600"
-              name="heroTagSolid"
-              size="1.5em"></ng-icon>
-            <span
-              *ngIf="isHovered || isExpanded"
-              class="label transition-all duration-300 ease-in-out"
-              >Products</span
-            >
+              *ngIf="isExpanded"
+              class="label transition-all duration-300 ease-in-out">
+              {{ navItem.title }}
+            </span>
           </a>
         </li>
       </ul>

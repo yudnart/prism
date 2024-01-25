@@ -1,0 +1,6 @@
+.sidebar-nav {
+  .nav-item .active,
+  .nav-item .active .icon {
+    @apply bg-blue-600 text-white;
+  }
+}

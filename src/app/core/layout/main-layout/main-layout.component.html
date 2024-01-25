@@ -1,9 +1,7 @@
 <!-- Root container -->
 <div class="flex flex-col sm:flex-row h-screen bg-gray-50">
   <!-- Sidebar: Hidden on mobile, visible on desktop -->
-  <aside
-    class="hidden sm:flex bg-white h-full w-16 border-r border-gray-200 bg-white"
-    [class.w-0]="isSidebarExpanded">
+  <aside class="hidden sm:flex h-full w-16" [class.md:w-0]="isSidebarExpanded">
     <!-- Sidebar content here -->
     <app-sidebar (expand)="onSidebarExpand($event)"></app-sidebar>
   </aside>
