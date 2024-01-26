@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { AppStateService } from '@/core/services/app-state.service';
 import { NavItem, NavigationService } from '@/core/services/navigation.service';
 import { CommonModule } from '@angular/common';
 import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   EventEmitter,
   HostListener,
@@ -16,6 +17,7 @@ import {
   heroChartBarSolid,
   heroCubeSolid,
   heroMapSolid,
+  heroSquare3Stack3dSolid,
   heroTagSolid,
   heroUsersSolid,
 } from '@ng-icons/heroicons/solid';
@@ -32,10 +34,12 @@ import {
       heroChartBarSolid,
       heroCubeSolid,
       heroMapSolid,
+      heroSquare3Stack3dSolid,
       heroTagSolid,
       heroUsersSolid,
     }),
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {
   private readonly IS_PINNED_DEFAULT = true;
@@ -52,8 +56,8 @@ export class SidebarComponent implements OnInit {
   public navItems: NavItem[] = [];
 
   constructor(
-    private readonly _appStateService: AppStateService,
-    private readonly _navService: NavigationService
+    private readonly _navService: NavigationService,
+    private readonly _cdr: ChangeDetectorRef
   ) {
     // Intentionally blank
   }
@@ -62,11 +66,7 @@ export class SidebarComponent implements OnInit {
 
   public ngOnInit() {
     this.navItems = this._navService.navItems;
-    this._appStateService
-      .get(this.IS_PINNED_KEY, this.IS_PINNED_DEFAULT)
-      .subscribe(isPinned => {
-        this.isPinned = isPinned;
-      });
+    this.isPinned = false;
   }
 
   //#endregion
@@ -80,6 +80,7 @@ export class SidebarComponent implements OnInit {
   public set isExpanded(value: boolean) {
     this._isExpanded = value;
     this.expand.emit(this._isExpanded);
+    this._cdr.detectChanges();
   }
 
   /**
@@ -90,6 +91,7 @@ export class SidebarComponent implements OnInit {
   }
   public set isHoverExpanded(value: boolean) {
     this._isHoverExpanded = value;
+    this._cdr.detectChanges();
   }
 
   /**
@@ -113,7 +115,6 @@ export class SidebarComponent implements OnInit {
       return;
     }
     this.isPinned = !this.isPinned;
-    this._appStateService.set(this.IS_PINNED_KEY, this.isPinned);
   }
 
   //#region Events

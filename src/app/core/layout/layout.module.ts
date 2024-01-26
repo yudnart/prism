@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SimpleLayoutModule } from '@/core/layout/simple-layout/simple-layout.module';
-import { MainLayoutModule } from '@/core/layout/main-layout/main-layout.module';
+import { RouterModule } from '@angular/router';
+import { LayoutComponent } from './layout.component';
+import { LayoutDirective } from './layout.directive';
+import { MainLayoutModule } from './main-layout';
 
 @NgModule({
-  declarations: [],
-  imports: [CommonModule, SimpleLayoutModule, MainLayoutModule],
-  exports: [SimpleLayoutModule, MainLayoutModule],
+  declarations: [LayoutComponent, LayoutDirective],
+  imports: [CommonModule, MainLayoutModule, RouterModule],
+  exports: [LayoutComponent, LayoutDirective],
 })
 export class LayoutModule {}

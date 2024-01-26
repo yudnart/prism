@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRoute, IsActiveMatchOptions, Router } from '@angular/router';
+import { IsActiveMatchOptions, Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class NavigationService {
@@ -12,10 +12,7 @@ export class NavigationService {
     return this._navItems;
   }
 
-  constructor(
-    private readonly _router: Router,
-    private readonly _activatedRoute: ActivatedRoute
-  ) {
+  constructor(private readonly _router: Router) {
     this._navItems = this.getTopLevelRoutes();
   }
 

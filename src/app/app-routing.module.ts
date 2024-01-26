@@ -10,9 +10,16 @@ const routes: Routes = [
       icon: 'heroChartBarSolid',
     },
     loadChildren: () =>
-      import('@/modules/dashboard/dashboard.module').then(
-        m => m.DashboardModule
-      ),
+      import('@/modules/dashboard').then(m => m.DashboardModule),
+  },
+  {
+    path: 'tenants',
+    data: {
+      id: 'tenants',
+      title: 'Tenants',
+      icon: 'heroSquare3Stack3dSolid',
+    },
+    loadChildren: () => import('@/modules/tenants').then(m => m.TenantsModule),
   },
   {
     path: 'users',
@@ -21,8 +28,11 @@ const routes: Routes = [
       title: 'Users',
       icon: 'heroUsersSolid',
     },
-    loadChildren: () =>
-      import('@/modules/users/users.module').then(m => m.UsersModule),
+    loadChildren: () => import('@/modules/users').then(m => m.UsersModule),
+  },
+  {
+    path: 'account',
+    loadChildren: () => import('@/modules/account').then(m => m.AccountModule),
   },
 ];
 

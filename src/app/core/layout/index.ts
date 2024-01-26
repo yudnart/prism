@@ -1,2 +1,2 @@
-export * from './main-layout';
-export * from './simple-layout';
+export * from './layout.service';
+export * from './layout.module';
