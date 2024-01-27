@@ -7,6 +7,7 @@ import {
   heroMapSolid,
   heroSquare3Stack3dSolid,
   heroTagSolid,
+  heroUserGroupSolid,
   heroUsersSolid,
 } from '@ng-icons/heroicons/solid';
 @NgModule({
@@ -19,6 +20,7 @@ import {
       heroMapSolid,
       heroSquare3Stack3dSolid,
       heroTagSolid,
+      heroUserGroupSolid,
       heroUsersSolid,
     }),
   ],

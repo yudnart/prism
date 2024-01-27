@@ -13,15 +13,6 @@ const routes: Routes = [
       import('@/modules/dashboard').then(m => m.DashboardModule),
   },
   {
-    path: 'tenants',
-    data: {
-      id: 'tenants',
-      title: 'Tenants',
-      icon: 'heroSquare3Stack3dSolid',
-    },
-    loadChildren: () => import('@/modules/tenants').then(m => m.TenantsModule),
-  },
-  {
     path: 'users',
     data: {
       id: 'users',
@@ -33,6 +24,10 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('@/modules/account').then(m => m.AccountModule),
+  },
+  {
+    path: 'system',
+    loadChildren: () => import('@/modules/system').then(m => m.SystemModule),
   },
 ];
 

@@ -10,6 +10,7 @@ import {
   TenantDropdownComponent,
 } from './components';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { UserMenuComponent } from './components/user-menu/user-menu.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { MainLayoutComponent } from './main-layout/main-layout.component';
     HeaderComponent,
     SidebarComponent,
     TenantDropdownComponent,
+    UserMenuComponent,
   ],
   imports: [CommonModule, RouterModule, IconsModule],
   exports: [LayoutComponent, LayoutDirective],

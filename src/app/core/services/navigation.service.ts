@@ -1,3 +1,4 @@
+import { SYSTEM_ROUTES } from '@/modules/system/system-routing.module';
 import { Injectable } from '@angular/core';
 import { IsActiveMatchOptions, Router } from '@angular/router';
 
@@ -13,7 +14,7 @@ export class NavigationService {
   }
 
   constructor(private readonly _router: Router) {
-    this._navItems = this.getTopLevelRoutes();
+    this._navItems = [...this.getTopLevelRoutes(), ...this.getSystemRoutes()];
   }
 
   public isActive(navItem: NavItem): boolean {
@@ -30,6 +31,21 @@ export class NavigationService {
       };
       return this._router.isActive(routeUrl, options);
     }
+  }
+
+  private getSystemRoutes() {
+    return [...SYSTEM_ROUTES]
+      .filter(route => route.data)
+      .map(
+        route =>
+          ({
+            id: route.data?.['id'],
+            parentId: route.data?.['parentId'],
+            title: route.data?.['title'],
+            icon: route.data?.['icon'],
+            path: `system/${route.path}`,
+          }) as NavItem
+      );
   }
 
   private getTopLevelRoutes() {

@@ -9,7 +9,7 @@ export const DASHBOARD_ROUTES: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
     data: {
-      parentId: 'dashboard',
+      id: 'dashboard',
       title: 'Dashboard',
       icon: 'heroChartBarSolid',
     },

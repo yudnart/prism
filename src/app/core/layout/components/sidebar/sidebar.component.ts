@@ -54,7 +54,7 @@ export class SidebarComponent implements OnInit {
   public set isExpanded(value: boolean) {
     this._isExpanded = value;
     this.expand.emit(this._isExpanded);
-    this._cdr.detectChanges();
+    this._cdr.markForCheck();
   }
 
   /**
@@ -65,7 +65,7 @@ export class SidebarComponent implements OnInit {
   }
   public set isHoverExpanded(value: boolean) {
     this._isHoverExpanded = value;
-    this._cdr.detectChanges();
+    this._cdr.markForCheck();
   }
 
   /**
