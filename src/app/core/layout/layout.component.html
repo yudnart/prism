@@ -1,10 +1,10 @@
 <ng-container *ngIf="layout$ | async as layout">
-  <div *ngIf="layout === DEFAULT_LAYOUT">
+  <div *ngIf="layout === 'simple'">
+    <router-outlet></router-outlet>
+  </div>
+  <div *ngIf="layout === 'main'">
     <app-main-layout>
       <router-outlet></router-outlet>
     </app-main-layout>
-  </div>
-  <div *ngIf="layout === 'simple'">
-    <router-outlet></router-outlet>
   </div>
 </ng-container>

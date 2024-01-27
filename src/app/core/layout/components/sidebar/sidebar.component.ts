@@ -1,6 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { NavItem, NavigationService } from '@/core/services/navigation.service';
-import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -10,43 +8,19 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NgIconComponent, provideIcons } from '@ng-icons/core';
-import {
-  heroBars3Solid,
-  heroChartBarSolid,
-  heroCubeSolid,
-  heroMapSolid,
-  heroSquare3Stack3dSolid,
-  heroTagSolid,
-  heroUsersSolid,
-} from '@ng-icons/heroicons/solid';
+import { NavItem, NavigationService } from '@/core/services';
 
 @Component({
-  standalone: true,
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss'],
-  imports: [CommonModule, NgIconComponent, RouterModule],
-  viewProviders: [
-    provideIcons({
-      heroBars3Solid,
-      heroChartBarSolid,
-      heroCubeSolid,
-      heroMapSolid,
-      heroSquare3Stack3dSolid,
-      heroTagSolid,
-      heroUsersSolid,
-    }),
-  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SidebarComponent implements OnInit {
   private readonly IS_PINNED_DEFAULT = true;
   private readonly MD_BREAKPOINT = 768;
   private readonly HOVER_EXPAND_DELAY = 300;
-  private readonly IS_PINNED_KEY = 'isPinned';
-  private _hoverTimeout: any;
+  private _hoverTimeout!: any;
   private _isExpanded = false;
   private _isHoverExpanded = false;
   private _isPinned = this.IS_PINNED_DEFAULT;

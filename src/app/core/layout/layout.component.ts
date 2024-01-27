@@ -1,13 +1,13 @@
 import {
+  AfterViewInit,
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  OnInit,
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ON_LAYOUT_INIT } from './layout.directive';
-import { DEFAULT_LAYOUT, LayoutService } from './layout.service';
+import { ON_LAYOUT_INIT } from './services/layout.directive';
+import { LayoutService } from './services/layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -15,17 +15,19 @@ import { DEFAULT_LAYOUT, LayoutService } from './layout.service';
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent implements OnInit {
+export class LayoutComponent implements AfterViewInit {
   private _layoutInit = false;
   private _routerEventListener: Subscription;
   public layout$ = this._layoutService.layout$;
-  public readonly DEFAULT_LAYOUT = DEFAULT_LAYOUT;
 
   constructor(
     private readonly _layoutService: LayoutService,
     private readonly _router: Router,
     private readonly _cdr: ChangeDetectorRef
   ) {
+    window.addEventListener(ON_LAYOUT_INIT, () => {
+      this._layoutInit = true;
+    });
     this._routerEventListener = this._router.events.subscribe(event => {
       if (event instanceof NavigationStart) {
         this.onNavigate();
@@ -39,12 +41,8 @@ export class LayoutComponent implements OnInit {
     });
   }
 
-  public ngOnInit(): void {
-    window.addEventListener(ON_LAYOUT_INIT, () => {
-      this._layoutInit = true;
-    });
-    this.layout$.subscribe(value => {
-      console.log(value);
+  public ngAfterViewInit(): void {
+    this.layout$.subscribe(() => {
       this._cdr.detectChanges();
     });
   }
@@ -58,6 +56,6 @@ export class LayoutComponent implements OnInit {
   }
 
   private resetLayout() {
-    this._layoutService.setLayout(DEFAULT_LAYOUT);
+    this._layoutService.setLayout('main');
   }
 }
