@@ -1,27 +1,30 @@
 <!-- user-menu.component.html -->
-<div class="flex w-full items-center">
-	<!-- Avatar or initials container -->
-	<div class="flex-shrink-0">
-		<div *ngIf="userImage; else showInitials" class="w-12 h-12 rounded-full">
-			<img [src]="userImage" alt="User avatar" class="object-cover w-full h-full" />
-		</div>
-		<ng-template #showInitials>
-			<div
-				class="w-12 h-12 rounded-full bg-white text-blue-600 border-2 border-blue-600 flex items-center justify-center text-lg font-semibold">
-				{{ getUserInitials() }}
+<button id="user-menu-button" type="button">
+	<div class="flex flex-row w-full items-center rounded-full">
+		<!-- Avatar or initials container -->
+		<div class="flex flex-col items-centers">
+			<div *ngIf="userImage; else showInitials" class="w-10 h-10 rounded-full">
+				<img [src]="userImage" alt="User avatar" class="object-cover w-full h-full" />
 			</div>
-		</ng-template>
-	</div>
+			<ng-template #showInitials>
+				<div
+					class="user-initial w-10 h-10 rounded-full bg-white text-blue-600 border-2 border-blue-600 flex items-center justify-center text-lg font-semibold">
+					<span>
+						{{ getUserInitials() }}
+					</span>
+				</div>
+			</ng-template><!-- User name and title, visible only when expanded -->
+		</div>
+		<div class="flex flex-col items-start ml-2 mb-1 overflow-hidden transition-visible duration-300 ease-in-out"
+			[class.opacity-0]="!isExpanded" [class.opacity-100]="isExpanded">
+			<div class="font-medium whitespace-nowrap">{{ userName }}</div>
+			<div class="text-xs text-gray-600 whitespace-nowrap -mt-1">{{ userRole }}</div>
+		</div>
 
-	<!-- User name and title, visible only when expanded -->
-	<div *ngIf="isExpanded" class="ml-2 flex flex-col justify-center">
-		<div class="text-sm font-medium whitespace-nowrap">{{ userName }}</div>
-		<div class="text-xs text-gray-600 whitespace-nowrap">{{ userRole }}</div>
+		<!-- Three-dot menu icon, visible only when expanded -->
+		<div class="flex-shrink-0 ml-2 transition-opacity duration-100 ease-in-out" [class.opacity-0]="!isExpanded"
+			[class.opacity-100]="isExpanded">
+			<!-- Your three-dot menu icon SVG or component -->
+		</div>
 	</div>
-
-	<!-- Three-dot menu icon, visible only when expanded -->
-	<div class="flex-shrink-0 ml-2 transition-opacity duration-300 ease-in-out" [class.opacity-0]="!isExpanded"
-		[class.opacity-100]="isExpanded">
-		<!-- Your three-dot menu icon SVG or component -->
-	</div>
-</div>
+</button>

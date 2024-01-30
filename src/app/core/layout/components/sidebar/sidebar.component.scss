@@ -1,6 +1,22 @@
+.brand {
+  background: linear-gradient(
+    to bottom right,
+    #7926ff,
+    #3161ff
+  ); /* Replace with your desired gradient colors */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
 .sidebar-nav {
   .nav-item .active,
   .nav-item .active .icon {
     @apply bg-blue-600 text-white;
   }
+}
+
+.sidebar-toggle {
+  background: linear-gradient(to top right, #3161ff, #7926ff);
 }

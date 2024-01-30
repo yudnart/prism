@@ -11,6 +11,7 @@ import {
 } from './components';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { UserMenuComponent } from './components/user-menu/user-menu.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { UserMenuComponent } from './components/user-menu/user-menu.component';
     SidebarComponent,
     TenantDropdownComponent,
     UserMenuComponent,
+    PageHeaderComponent,
   ],
   imports: [CommonModule, RouterModule, IconsModule],
   exports: [LayoutComponent, LayoutDirective],

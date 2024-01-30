@@ -1,6 +1,14 @@
 import { NgModule } from '@angular/core';
 import { NgIconsModule } from '@ng-icons/core';
 import {
+  tablerLayoutSidebarLeftCollapse,
+  tablerLayoutSidebarLeftExpand,
+} from '@ng-icons/tabler-icons';
+import {
+  heroArrowLeftCircleMini,
+  heroArrowRightCircleMini,
+} from '@ng-icons/heroicons/mini';
+import {
   heroBars3Solid,
   heroChartBarSolid,
   heroCubeSolid,
@@ -14,6 +22,8 @@ import {
   declarations: [],
   imports: [
     NgIconsModule.withIcons({
+      heroArrowLeftCircleMini,
+      heroArrowRightCircleMini,
       heroBars3Solid,
       heroChartBarSolid,
       heroCubeSolid,
@@ -22,6 +32,8 @@ import {
       heroTagSolid,
       heroUserGroupSolid,
       heroUsersSolid,
+      tablerLayoutSidebarLeftCollapse,
+      tablerLayoutSidebarLeftExpand,
     }),
   ],
   exports: [NgIconsModule],

@@ -19,7 +19,6 @@ export class LayoutDirective implements OnInit {
   }
 
   public ngOnInit() {
-    console.log('layout directive set layout');
     this.layoutService.setLayout(this.layout);
   }
 }

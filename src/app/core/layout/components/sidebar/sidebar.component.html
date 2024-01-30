@@ -1,33 +1,53 @@
 <!-- Sidebar for larger screens (md and above) -->
-<div tabindex="0"
-  class="sidebar hidden sm:flex flex-col justify-between h-full bg-white border-r border-gray-200 absolute z-50 transition-all duration-300 ease-in-out"
-  [class.w-20]="!isExpanded" [class.w-72]="isExpanded" (click)="togglePinState()" (keypress)="onKeyPress($event)"
-  (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()" (mousemove)="onMouseMove()">
-  <div class="flex grow flex-col w-full gap-y-5 overflow-x-hidden overflow-y-auto px-4 pb-4">
-    <div class="flex h-16 shrink-0 items-center mx-auto">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"
-        class="h-10 w-10 shrink-0 font-semibold text-blue-700">
-        <path fill-rule="evenodd"
-          d="M1.5 7.125c0-1.036.84-1.875 1.875-1.875h6c1.036 0 1.875.84 1.875 1.875v3.75c0 1.036-.84 1.875-1.875 1.875h-6A1.875 1.875 0 011.5 10.875v-3.75zm12 1.5c0-1.036.84-1.875 1.875-1.875h5.25c1.035 0 1.875.84 1.875 1.875v8.25c0 1.035-.84 1.875-1.875 1.875h-5.25a1.875 1.875 0 01-1.875-1.875v-8.25zM3 16.125c0-1.036.84-1.875 1.875-1.875h5.25c1.036 0 1.875.84 1.875 1.875v2.25c0 1.035-.84 1.875-1.875 1.875h-5.25A1.875 1.875 0 013 18.375v-2.25z"
-          clip-rule="evenodd"></path>
-      </svg>
+<div tabindex="-1"
+  class="flex flex-col h-full border-r border-gray-200 bg-white transition-width duration-300 ease-in-out overflow-y-hidden"
+  [class.w-20]="!isExpanded" [class.w-72]="isExpanded" (click)="onClicked($event)" (keypress)="onKeyPress($event)">
+  <div class="flex grow flex-col gap-y-5 overflow-hidden px-4">
+    <!-- Sticky top brand section -->
+    <header class="sticky top-1 bg-white m-auto">
+      <div class="flex flex-row items-center shrink-0 mt-1.5 mb-2.5 -ml-1">
+        <img src="assets/img/logo.png" alt="Logo" class="w-14 h-14" />
+        <h1 class="brand self-center font-bold text-3xl ml-2 transition-all duration-300 ease-in-out"
+          [class.opacity-0]="!isExpanded" [class.opacity-100]="isExpanded">
+          PRiSM
+        </h1>
+      </div>
+    </header>
+    <!-- nav -->
+    <div class="flex flex-row flex-1 -mx-4 px-4 -my-5 pt-5 overflow-x-hidden overflow-y-auto">
+      <nav tabindex="-1" class="flex flex-1 flex-col mx-1">
+        <ul tabindex="-1" role="list" class="sidebar-nav flex flex-1 flex-col space-y-1">
+          <li *ngFor="let navItem of navItems; index as i" class="nav-item">
+            <a class="group flex flex-row gap-x-2 py-2 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-all duration-300 ease-in-out"
+              [class.px-2]="!isExpanded" [class.px-4]="isExpanded" [class.active]="isNavItemActive(navItem)"
+              [routerLink]="navItem.path" [title]="navItem.title" (click)="onNavItemClicked($event)">
+              <ng-icon size="1.5em" class="icon text-gray-500 group-hover:text-blue-600"
+                [name]="navItem.icon"></ng-icon>
+              <span *ngIf="isExpanded" class="inline-block transition-opacity duration-300 ease-in-out"
+                [class.opacity-0]="!isExpanded" [class.opacity-100]="isExpanded">
+                {{ navItem.title }}
+              </span>
+            </a>
+          </li>
+        </ul>
+      </nav>
     </div>
-    <nav class="flex flex-1 flex-col">
-      <ul role="list" class="sidebar-nav flex flex-1 flex-col space-y-1">
-        <li *ngFor="let navItem of navItems" class="nav-item">
-          <a class="group flex gap-x-2 px-3 py-3 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-3xl"
-            [class.active]="isNavItemActive(navItem)" [routerLink]="navItem.path" [title]="navItem.title"
-            (click)="$event.stopPropagation()">
-            <ng-icon size="1.5em" class="icon text-gray-400 group-hover:text-blue-600" [name]="navItem.icon"></ng-icon>
-            <span *ngIf="isExpanded" class="label transition-all duration-300 ease-in-out">
-              {{ navItem.title }}
-            </span>
-          </a>
-        </li>
-      </ul>
-    </nav>
-    <div class="flex flex-row -ml-4 pl-4 border-t pt-4" [class.w-20]="!isExpanded" [class.w-72]="isExpanded">
+    <!-- separator -->
+    <div class="border-b border-gray-900/10 transition-all duration-300 ease-in-out -mx-4"
+      [class.opacity-0]="!isExpanded">
+    </div>
+    <!-- user menu -->
+    <div tabindex="-1" class="-mt-5 py-2.5 px-1">
       <app-user-menu [isExpanded]="isExpanded"></app-user-menu>
     </div>
+  </div>
+</div>
+<!-- sidebar pin toggle-->
+<div tabindex="-1" class="absolute top-6 z-20 cursor-pointer transition-all duration-300 ease-in-out h-[20px] mt-1"
+  [class.left-20]="!isExpanded" [class.left-72]="isExpanded" (click)="onClicked($event)"
+  (keypress)="onKeyPress($event)">
+  <div class="sidebar-toggle inline-flex flex-1 bg-blue-600 text-white -ml-2.5 rounded-full ">
+    <ng-icon *ngIf="!isExpanded" size="20" name="heroArrowRightCircleMini" strokeWidth="1.5"></ng-icon>
+    <ng-icon *ngIf="isExpanded" size="20" name="heroArrowLeftCircleMini" strokeWidth="1.5"></ng-icon>
   </div>
 </div>

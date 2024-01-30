@@ -1,0 +1,39 @@
+/* user-menu.component.css */
+.user-initial {
+  position: relative;
+  overflow: hidden; /* Ensure the pseudo-element is contained */
+  span {
+    background: linear-gradient(
+      to right,
+      #3161ff,
+      #7926ff
+    ); /* Replace with your desired gradient colors */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+.user-initial::after {
+  content: '';
+  position: absolute;
+  top: -1px; /* Adjust if you want thicker borders */
+  right: -1px;
+  bottom: -1px;
+  left: -1px;
+  background: linear-gradient(
+    to right,
+    #3161ff,
+    #7926ff
+  ); /* Match this gradient with your logo gradient */
+  mask: /* Standard property for compatibility */
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask: /* For Webkit browsers */
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: destination-out; /* For Webkit browsers */
+  mask-composite: exclude; /* Standard syntax */
+  border-radius: 9999px; /* To match the rounded-full utility */
+}
