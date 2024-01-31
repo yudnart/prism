@@ -14,7 +14,7 @@
       </div>
     </header>
     <!-- nav -->
-    <div class="flex flex-row flex-1 -mx-4 px-4 -my-5 pt-5 overflow-x-hidden overflow-y-auto">
+    <div class="flex flex-row flex-1 -mx-4 px-4 -my-5 pt-5 overflow-x-hidden overflow-y-auto z-10">
       <nav tabindex="-1" class="flex flex-1 flex-col mx-1">
         <ul tabindex="-1" role="list" class="sidebar-nav flex flex-1 flex-col space-y-1">
           <li *ngFor="let navItem of navItems; index as i" class="nav-item">
@@ -47,7 +47,7 @@
   [class.left-20]="!isExpanded" [class.left-72]="isExpanded" (click)="onClicked($event)"
   (keypress)="onKeyPress($event)">
   <div class="sidebar-toggle inline-flex flex-1 bg-blue-600 text-white -ml-2.5 rounded-full ">
-    <ng-icon *ngIf="!isExpanded" size="20" name="heroArrowRightCircleMini" strokeWidth="1.5"></ng-icon>
-    <ng-icon *ngIf="isExpanded" size="20" name="heroArrowLeftCircleMini" strokeWidth="1.5"></ng-icon>
+    <ng-icon *ngIf="!isExpanded" size="20" name="heroArrowRightCircleMini" strokeWidth="1"></ng-icon>
+    <ng-icon *ngIf="isExpanded" size="20" name="heroArrowLeftCircleMini" strokeWidth="1"></ng-icon>
   </div>
 </div>

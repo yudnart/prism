@@ -8,7 +8,7 @@ import {
   OnInit,
   Output,
 } from '@angular/core';
-import { NavItem, NavigationService } from '@/core/services';
+import { NavItem, NavigationService } from '@/core';
 import { Subject, Subscription, debounceTime } from 'rxjs';
 
 @Component({
@@ -24,7 +24,6 @@ export class SidebarComponent implements OnInit {
   private readonly _clickSubject = new Subject<MouseEvent>();
   private readonly _clickSubscription!: Subscription;
   private _isExpanded = false;
-  private _isHoverExpanded = false;
   private _isPinned!: boolean;
 
   @Output() expand = new EventEmitter<boolean>();
@@ -99,8 +98,8 @@ export class SidebarComponent implements OnInit {
   }
 
   public onNavItemClicked(e: MouseEvent) {
-    this.toggleExpand(false, false);
     e.stopPropagation();
+    this.toggleExpand(false, false);
   }
 
   public onKeyPress(e: KeyboardEvent) {
@@ -133,6 +132,7 @@ export class SidebarComponent implements OnInit {
     } else {
       this._isExpanded = value;
     }
+    this._cdr.markForCheck();
   }
 
   //#endregion

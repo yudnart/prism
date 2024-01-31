@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ON_LAYOUT_INIT } from './services/layout.directive';
+import { ON_LAYOUT_INIT } from './directives/layout.directive';
 import { LayoutService } from './services/layout.service';
 
 @Component({

@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { IconsModule } from '@/@shared/icons/icons.module';
 import { LayoutComponent } from './layout.component';
-import { LayoutDirective } from './services/layout.directive';
+import { LayoutDirective } from './directives/layout.directive';
 import {
   HeaderComponent,
+  PageHeaderComponent,
   SidebarComponent,
   TenantDropdownComponent,
+  UserMenuComponent,
 } from './components';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
-import { UserMenuComponent } from './components/user-menu/user-menu.component';
-import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { HoverEffectDirective } from './directives/hover-effect.directive';
 
 @NgModule({
   declarations: [
@@ -19,12 +20,13 @@ import { PageHeaderComponent } from './components/page-header/page-header.compon
     LayoutComponent,
     LayoutDirective,
     HeaderComponent,
+    HoverEffectDirective,
     SidebarComponent,
     TenantDropdownComponent,
     UserMenuComponent,
     PageHeaderComponent,
   ],
   imports: [CommonModule, RouterModule, IconsModule],
-  exports: [LayoutComponent, LayoutDirective],
+  exports: [HoverEffectDirective, LayoutComponent, LayoutDirective],
 })
 export class LayoutModule {}

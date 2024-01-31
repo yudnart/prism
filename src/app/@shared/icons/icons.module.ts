@@ -8,6 +8,7 @@ import {
   heroArrowLeftCircleMini,
   heroArrowRightCircleMini,
 } from '@ng-icons/heroicons/mini';
+import { heroChartBar } from '@ng-icons/heroicons/outline';
 import {
   heroBars3Solid,
   heroChartBarSolid,
@@ -25,6 +26,7 @@ import {
       heroArrowLeftCircleMini,
       heroArrowRightCircleMini,
       heroBars3Solid,
+      heroChartBar,
       heroChartBarSolid,
       heroCubeSolid,
       heroMapSolid,

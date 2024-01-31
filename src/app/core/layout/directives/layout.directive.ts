@@ -1,6 +1,6 @@
 /* eslint-disable @angular-eslint/directive-selector */
 import { Directive, Input, OnInit } from '@angular/core';
-import { Layout, LayoutService } from './layout.service';
+import { Layout, LayoutService } from '../services/layout.service';
 
 export const ON_LAYOUT_INIT = 'ON_LAYOUT_INIT';
 @Directive({
