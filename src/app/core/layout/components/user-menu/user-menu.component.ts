@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { UserContextService } from '@/core/services/user-context.service';
 
 @Component({
   selector: 'app-user-menu',
@@ -8,15 +9,29 @@ import { Component, Input } from '@angular/core';
 export class UserMenuComponent {
   @Input() isExpanded = false;
 
-  // User details can be fetched from a service or input, for example
-  public userName = 'Duy Tran';
-  public userRole = 'Creative Director';
-  public userImage: string | null = null;
+  public get user() {
+    return this.__userContext.user;
+  }
+
+  public get username() {
+    return `${this.user.giveName} ${this.user.surname}`;
+  }
+
+  public get jobTitle() {
+    return this.user.jobTitle;
+  }
+
+  constructor(private readonly __userContext: UserContextService) {
+    // Intentionally blank
+  }
 
   // Method to get the initial from the user name
   public getUserInitials(): string {
-    const names = this.userName.split(' ');
-    const initials = names.map(name => name.charAt(0)).join('');
-    return initials.toUpperCase(); // Ensure the initials are uppercase
+    const initials = this.user.giveName.charAt(0) + this.user.surname.charAt(0);
+    return initials.toUpperCase();
+  }
+
+  public onClicked($event: MouseEvent) {
+    $event.stopPropagation();
   }
 }

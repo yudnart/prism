@@ -1,10 +1,10 @@
 <!-- user-menu.component.html -->
-<button id="user-menu-button" type="button">
+<button id="user-menu-button" type="button" (click)="onClicked($event)">
 	<div class="flex flex-row w-full items-center rounded-full">
 		<!-- Avatar or initials container -->
 		<div class="flex flex-col items-centers">
-			<div *ngIf="userImage; else showInitials" class="w-10 h-10 rounded-full">
-				<img [src]="userImage" alt="User avatar" class="object-cover w-full h-full" />
+			<div *ngIf="user.avatar; else showInitials" class="w-10 h-10 rounded-full">
+				<img [src]="user.avatar" alt="User avatar" class="rounded-full shadow-md" />
 			</div>
 			<ng-template #showInitials>
 				<div
@@ -17,8 +17,8 @@
 		</div>
 		<div class="flex flex-col items-start ml-2 mb-1 overflow-hidden transition-visible duration-300 ease-in-out"
 			[class.opacity-0]="!isExpanded" [class.opacity-100]="isExpanded">
-			<div class="font-medium whitespace-nowrap">{{ userName }}</div>
-			<div class="text-xs text-gray-600 whitespace-nowrap -mt-1">{{ userRole }}</div>
+			<div class="font-medium whitespace-nowrap">{{ username }}</div>
+			<div class="text-xs text-gray-600 whitespace-nowrap -mt-1">{{ jobTitle }}</div>
 		</div>
 
 		<!-- Three-dot menu icon, visible only when expanded -->

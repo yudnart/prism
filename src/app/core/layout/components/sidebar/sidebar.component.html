@@ -1,12 +1,11 @@
-<!-- Sidebar for larger screens (md and above) -->
 <div tabindex="-1"
-  class="flex flex-col h-full border-r border-gray-200 bg-white transition-width duration-300 ease-in-out overflow-y-hidden"
+  class="flex flex-col h-full py-2.5 border-r border-gray-200 bg-white transition-width duration-300 ease-in-out overflow-y-hidden"
   [class.w-20]="!isExpanded" [class.w-72]="isExpanded" (click)="onClicked($event)" (keypress)="onKeyPress($event)">
   <div class="flex grow flex-col gap-y-5 overflow-hidden px-4">
     <!-- Sticky top brand section -->
-    <header class="sticky top-1 bg-white m-auto">
-      <div class="flex flex-row items-center shrink-0 mt-1.5 mb-2.5 -ml-1">
-        <img src="assets/img/logo.png" alt="Logo" class="w-14 h-14" />
+    <header class="sticky bg-white m-auto">
+      <div class="flex flex-row items-center shrink-0">
+        <img src="assets/img/logo.png" alt="Logo" class="w-12 h-12" />
         <h1 class="brand self-center font-bold text-3xl ml-2 transition-all duration-300 ease-in-out"
           [class.opacity-0]="!isExpanded" [class.opacity-100]="isExpanded">
           PRiSM
@@ -20,7 +19,7 @@
           <li *ngFor="let navItem of navItems; index as i" class="nav-item">
             <a class="group flex flex-row gap-x-2 py-2 leading-6 font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-100 rounded-full transition-all duration-300 ease-in-out"
               [class.px-2]="!isExpanded" [class.px-4]="isExpanded" [class.active]="isNavItemActive(navItem)"
-              [routerLink]="navItem.path" [title]="navItem.title" (click)="onNavItemClicked($event)">
+              [routerLink]="navItem.path" [title]="navItem.title">
               <ng-icon size="1.5em" class="icon text-gray-500 group-hover:text-blue-600"
                 [name]="navItem.icon"></ng-icon>
               <span *ngIf="isExpanded" class="inline-block transition-opacity duration-300 ease-in-out"
@@ -37,13 +36,13 @@
       [class.opacity-0]="!isExpanded">
     </div>
     <!-- user menu -->
-    <div tabindex="-1" class="-mt-5 py-2.5 px-1">
+    <div tabindex="-1" class="px-1 -mt-2.5">
       <app-user-menu [isExpanded]="isExpanded"></app-user-menu>
     </div>
   </div>
 </div>
-<!-- sidebar pin toggle-->
-<div tabindex="-1" class="absolute top-6 z-20 cursor-pointer transition-all duration-300 ease-in-out h-[20px] mt-1"
+<!-- sidebar toggle -->
+<div tabindex="-1" class="absolute top-6 z-20 cursor-pointer transition-all duration-300 ease-in-out h-[20px]"
   [class.left-20]="!isExpanded" [class.left-72]="isExpanded" (click)="onClicked($event)"
   (keypress)="onKeyPress($event)">
   <div class="sidebar-toggle inline-flex flex-1 bg-blue-600 text-white -ml-2.5 rounded-full ">

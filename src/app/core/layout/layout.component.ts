@@ -3,11 +3,12 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  OnDestroy,
+  OnInit,
 } from '@angular/core';
 import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ON_LAYOUT_INIT } from './directives/layout.directive';
-import { LayoutService } from './services/layout.service';
+import { Layout, LayoutService } from './services/layout.service';
 
 @Component({
   selector: 'app-layout',
@@ -15,9 +16,9 @@ import { LayoutService } from './services/layout.service';
   styleUrls: ['./layout.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LayoutComponent implements AfterViewInit {
-  private _layoutInit = false;
-  private _routerEventListener: Subscription;
+export class LayoutComponent implements OnInit, AfterViewInit, OnDestroy {
+  private readonly DEFAULT_LAYOUT: Layout = 'main';
+  private readonly _subscriptions: Subscription[] = [];
   public layout$ = this._layoutService.layout$;
 
   constructor(
@@ -25,37 +26,35 @@ export class LayoutComponent implements AfterViewInit {
     private readonly _router: Router,
     private readonly _cdr: ChangeDetectorRef
   ) {
-    window.addEventListener(ON_LAYOUT_INIT, () => {
-      this._layoutInit = true;
-    });
-    this._routerEventListener = this._router.events.subscribe(event => {
-      if (event instanceof NavigationStart) {
-        this.onNavigate();
-      }
-      if (event instanceof NavigationEnd) {
-        if (!this._layoutInit) {
-          this.resetLayout();
+    // Intentionally blank
+  }
+
+  public ngOnInit() {
+    this._subscriptions.push(
+      this._router.events.subscribe(event => {
+        if (event instanceof NavigationEnd) {
+          if (!this._layoutService.hasLayout) {
+            this.resetLayout();
+          }
+          this._cdr.markForCheck();
         }
-        this._cdr.detectChanges();
-      }
-    });
+      })
+    );
   }
 
   public ngAfterViewInit(): void {
-    this.layout$.subscribe(() => {
-      this._cdr.detectChanges();
-    });
+    this._subscriptions.push(
+      this.layout$.subscribe(() => {
+        this._cdr.detectChanges();
+      })
+    );
   }
 
-  public onDispose() {
-    this._routerEventListener.unsubscribe();
-  }
-
-  private onNavigate() {
-    this._layoutInit = false;
+  public ngOnDestroy() {
+    this._subscriptions.forEach(s => s.unsubscribe());
   }
 
   private resetLayout() {
-    this._layoutService.setLayout('main');
+    this._layoutService.setLayout(this.DEFAULT_LAYOUT);
   }
 }

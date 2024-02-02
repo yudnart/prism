@@ -1,0 +1,12 @@
+<nav tabindex="-1" class="mobile-nav h-full">
+    <ul tabindex="-1" role="list" class="flex divide-x divide-gray-200 items-center justify-around h-full">
+        <!-- Dynamically generated navigation items -->
+        <li *ngFor="let navItem of navItems; index as i" class="nav-item flex-1 text-center h-full">
+            <a class="group flex items-center justify-center h-full w-full text-gray-700 transition-all duration-300 ease-in-out"
+                [class.active]="isNavItemActive(navItem)" [routerLink]="navItem.path" [title]="navItem.title">
+                <!-- Icon placeholder -->
+                <ng-icon size="1.5em" class="icon text-gray-500" [name]="navItem.icon"></ng-icon>
+            </a>
+        </li>
+    </ul>
+</nav>

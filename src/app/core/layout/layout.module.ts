@@ -5,8 +5,7 @@ import { IconsModule } from '@/@shared/icons/icons.module';
 import { LayoutComponent } from './layout.component';
 import { LayoutDirective } from './directives/layout.directive';
 import {
-  HeaderComponent,
-  PageHeaderComponent,
+  MobileNavComponent,
   SidebarComponent,
   TenantDropdownComponent,
   UserMenuComponent,
@@ -19,12 +18,11 @@ import { HoverEffectDirective } from './directives/hover-effect.directive';
     MainLayoutComponent,
     LayoutComponent,
     LayoutDirective,
-    HeaderComponent,
     HoverEffectDirective,
     SidebarComponent,
     TenantDropdownComponent,
     UserMenuComponent,
-    PageHeaderComponent,
+    MobileNavComponent,
   ],
   imports: [CommonModule, RouterModule, IconsModule],
   exports: [HoverEffectDirective, LayoutComponent, LayoutDirective],

@@ -3,7 +3,8 @@
   <!-- Sidebar: Hidden on mobile, visible on desktop -->
   <aside
     class="hidden sm:flex sm:flex-row h-full z-50 border-r border-gray-200 bg-white transition-width duration-300 ease-in-out"
-    [class.w-20]="!isSidebarExpanded" [class.w-72]="isSidebarExpanded"><!-- Sidebar content here -->
+    [class.w-20]="!isSidebarExpanded" [class.w-72]="isSidebarExpanded">
+    <!-- sidebar for desktop (>= sm)-->
     <app-sidebar (expand)="onSidebarExpand($event)"></app-sidebar>
   </aside>
 
@@ -21,18 +22,7 @@
   </div>
   <!-- Footer: Always visible at the bottom on mobile, hidden on desktop -->
   <footer class="bg-white sm:hidden border-t border-gray-200 h-16">
-    <nav tabindex="-1" class="h-full">
-      <ul tabindex="-1" role="list" class="flex divide-x divide-gray-200 items-center justify-around h-full">
-        <!-- Dynamically generated navigation items -->
-        <li *ngFor="let navItem of navItems; index as i" class="flex-1 text-center h-full">
-          <a class="group flex items-center justify-center h-full w-full text-gray-700 hover:text-blue-600 hover:bg-gray-100 transition-all duration-300 ease-in-out"
-            [routerLink]="navItem.path" [title]="navItem.title">
-            <!-- Icon placeholder -->
-            <ng-icon size="1.5em" class="icon text-gray-500 group-hover:text-blue-600" [name]="navItem.icon"></ng-icon>
-          </a>
-        </li>
-      </ul>
-    </nav>
+    <!-- mobile nav for mobile view (< sm)-->
+    <app-mobile-nav></app-mobile-nav>
   </footer>
-
 </div>

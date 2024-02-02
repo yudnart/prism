@@ -27,10 +27,10 @@
     #3161ff,
     #7926ff
   ); /* Match this gradient with your logo gradient */
-  mask: /* Standard property for compatibility */
+  -webkit-mask: /* For Webkit browsers */
     linear-gradient(#fff 0 0) padding-box,
     linear-gradient(#fff 0 0);
-  -webkit-mask: /* For Webkit browsers */
+  mask: /* Standard property for compatibility */
     linear-gradient(#fff 0 0) padding-box,
     linear-gradient(#fff 0 0);
   -webkit-mask-composite: destination-out; /* For Webkit browsers */

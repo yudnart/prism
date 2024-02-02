@@ -1,4 +1,10 @@
 <div [layout]="'main'">
+    <table datagrid [datasource]="data" class="border">
+        <ng-container columnDef="birthDate">
+            <th *columnHeaderDef>Birthdate</th>
+            <td *cellDef="let item">{{ item.birthDate | date: 'shortDate' }}</td>
+        </ng-container>
+    </table>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
     incididunt ut labore et dolore magna aliqua. Maecenas volutpat blandit aliquam
     etiam erat velit scelerisque in. Congue quisque egestas diam in arcu cursus.
