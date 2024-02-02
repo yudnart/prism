@@ -11,7 +11,6 @@ export class DashboardComponent {
 
   constructor() {
     this.resolveData();
-    console.log(this.data);
   }
 
   private resolveData() {
