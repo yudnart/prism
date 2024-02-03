@@ -12,6 +12,7 @@ import {
 } from './components';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { HoverEffectDirective } from './directives/hover-effect.directive';
+import { SharedModule } from '@/@shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { HoverEffectDirective } from './directives/hover-effect.directive';
     UserMenuComponent,
     MobileNavComponent,
   ],
-  imports: [CommonModule, RouterModule, IconsModule],
+  imports: [CommonModule, RouterModule, SharedModule, IconsModule],
   exports: [HoverEffectDirective, LayoutComponent, LayoutDirective],
 })
 export class LayoutModule {}

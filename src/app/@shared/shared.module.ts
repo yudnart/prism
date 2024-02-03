@@ -6,6 +6,7 @@ import {
   DataGridColumnDirective,
   DataGridColumnHeaderDirective,
 } from './components/datagrid/directives/datagrid.column-def.directive';
+import { SafeHtmlPipe } from './pipes/safe-html.pipe';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import {
     DataGridColumnHeaderDirective,
     DataGridColumnDirective,
     DataGridCellDirective,
+    SafeHtmlPipe,
   ],
   imports: [CommonModule],
   exports: [
@@ -20,6 +22,7 @@ import {
     DataGridColumnHeaderDirective,
     DataGridColumnDirective,
     DataGridCellDirective,
+    SafeHtmlPipe,
   ],
 })
 export class SharedModule {}

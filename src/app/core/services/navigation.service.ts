@@ -43,6 +43,7 @@ export class NavigationService {
             parentId: route.data?.['parentId'],
             title: route.data?.['title'],
             icon: route.data?.['icon'],
+            iconRef: route.data?.['iconRef'],
             path: `system/${route.path}`,
           }) as NavItem
       );
@@ -58,6 +59,7 @@ export class NavigationService {
             parentId: route.data?.['parentId'],
             title: route.data?.['title'],
             icon: route.data?.['icon'],
+            iconRef: route.data?.['iconRef'],
             path: route.path,
           }) as NavItem
       );
@@ -70,4 +72,5 @@ export interface NavItem {
   path: string;
   title: string;
   icon: string;
+  iconRef: string;
 }

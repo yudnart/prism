@@ -10,6 +10,5 @@ export const ACCOUNT_ROUTES: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forChild(ACCOUNT_ROUTES)],
-  exports: [RouterModule],
 })
 export class AccountRoutingModule {}

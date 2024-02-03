@@ -13,7 +13,7 @@ export const SYSTEM_ROUTES: Routes = [
       parentId: 'system',
       id: 'tenants',
       title: 'Tenants',
-      icon: 'heroSquare3Stack3dSolid',
+      iconRef: 'heroSquare3Stack3dSolid',
     },
   },
   {
@@ -24,12 +24,11 @@ export const SYSTEM_ROUTES: Routes = [
       parentId: 'system',
       id: 'identity',
       title: 'Identity',
-      icon: 'heroUserGroupSolid',
+      iconRef: 'heroUserGroupSolid',
     },
   },
 ];
 @NgModule({
   imports: [RouterModule.forChild(SYSTEM_ROUTES)],
-  exports: [RouterModule],
 })
 export class SystemRoutingModule {}

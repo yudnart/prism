@@ -17,6 +17,5 @@ export const DASHBOARD_ROUTES: Routes = [
 ];
 @NgModule({
   imports: [RouterModule.forChild(DASHBOARD_ROUTES)],
-  exports: [RouterModule],
 })
 export class DashboardRoutingModule {}
